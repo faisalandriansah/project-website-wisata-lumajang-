@@ -30,7 +30,7 @@ class CommentController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'wisata_id' => 'required|exists::wisatas,id',
+            'wisata_id' => 'required|exists:wisatas,id',
             'nama_pengunjung' => 'required',
             'isi' => 'required',
         ]);
