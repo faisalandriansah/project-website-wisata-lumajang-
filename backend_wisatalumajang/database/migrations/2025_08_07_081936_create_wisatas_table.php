@@ -8,8 +8,6 @@ use Illuminate\Database\Migrations\Migration;
 use App\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\Model;
 
-
-
 return new class extends Migration
 {
     /**
@@ -17,11 +15,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('wisatas', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
+            $table->string('nama');
+            $table->text('deskripsi')->nullable();
+            $table->string('lokasi');
+            $table->enum('kategori', ['gunung', 'air_terjun', 'pantai', 'danau', 'hutan']);
+            $table->string('gambar')->nullable();
+            $table->decimal('latitude', 10, 6)->nullable();
+            $table->decimal('longitude', 10, 6)->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('wisatas');
     }
 };
